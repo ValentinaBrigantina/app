@@ -1,0 +1,42 @@
+html
+    head 
+        if pageTitle 
+            title #{title}
+        else 
+            title Our pets
+        link(rel='stylesheet', href='https://fonts.googleapis.com/icon?family=Material+Icons')
+        link(rel='stylesheet', href='/styles/materialize.css', type='text/css', media='screen,projection')
+        link(rel='stylesheet', href='/styles/main.css')
+    
+    body
+        script(src='/scripts/index.js')
+        block header 
+            nav.teal.lighten-2
+                .nav-wrapper
+                    a.brand-logo.left(href='/') Gallery
+                    ul#nav-mobile.right
+                        li
+                            a#addImagePet(href='upload_image') Add image
+                        li
+                            a(href='chat.html') Chat
+                        li
+                            a(href='sign_up') Sign up
+                        li
+                            a(href='sign_in') Sign in
+                        li
+                            a#signOut(href='#') Sign out
+        main.container.colum 
+            .main
+                block content
+        footer.page-footer.teal.lighten-3
+                .container
+                    .row
+                        .col.l6.s12
+                            h5.white-text Footer Content
+                            p.grey-text.text-lighten-4 You can use rows and columns here to organize your footer content.
+                .footer-copyright
+                    .container
+                    | &copy; 2014 Copyright Text
+
+        block scripts 
+            script(type='text/javascript', src='/scripts/materialize.js')
