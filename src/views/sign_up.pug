@@ -1,0 +1,17 @@
+extends layout.pug
+
+block content
+    .form
+        h5 Sign up
+        .row
+            form.col.s10
+                .row
+                    .input-field.col.s10
+                        input#name_user.validate(type='text')
+                        label(for='name_user') Name
+        .row
+            .input-field.col.s10
+                input#password.validate(type='password')
+                label(for='password') Password
+        button#submit_signup.waves-effect.waves-light.btn-small.bt Sign up
+    script(src='/scripts/sign_up.js')

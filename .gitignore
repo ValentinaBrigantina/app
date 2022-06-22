@@ -1,0 +1,6 @@
+node_modules/
+.idea/
+frontend/images/*
+!frontend/images/.gitkeep
+backend/src/services/db_user.json
+backend/src/services/db_pets.json
