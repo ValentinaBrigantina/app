@@ -18,13 +18,6 @@ const onloadHandler = async () => {
     signOut.addEventListener('click', async () => {
        localStorage.removeItem('token')
     })
-
-    // const socket = io("ws://localhost:3000", {
-    //     reconnectionDelayMax: 10000
-    // });
-    // socket.on('HELLO', (e) => {
-    //     console.log(e)
-    // })
 }
 
 document.addEventListener("DOMContentLoaded", onloadHandler)

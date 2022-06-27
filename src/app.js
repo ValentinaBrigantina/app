@@ -11,11 +11,15 @@ const { Server } = require("socket.io")
 const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
+const socketHandlers = require('./controllers/socket')
 
 io.on("connection", (socket) => {
-  socket.on('chat message', (msg) => {
-    console.log('message: ' + msg);
-  });
+  for (let [name, handler] of Object.entries(socketHandlers)) {
+    socket.on(name, async (data) => {
+      const result = await handler(socket, data)
+      io.emit(name, result);
+    })
+  }
 })
 
 const router = require('./router')
