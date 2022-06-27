@@ -5,9 +5,21 @@ require('dotenv').config({
 
 const express = require('express')
 const { isNumber } = require('lodash')
-const router = require('./router')
+const { createServer } = require("http")
+const { Server } = require("socket.io")
 
 const app = express()
+const httpServer = createServer(app)
+const io = new Server(httpServer)
+
+io.on("connection", (socket) => {
+  socket.on('chat message', (msg) => {
+    console.log('message: ' + msg);
+  });
+})
+
+const router = require('./router')
+
 const port = parseInt(process.env.PORT) || 3000
 
 app.set('views', join(__dirname, 'views'))
@@ -27,6 +39,4 @@ app.use((err, req, res, next) => {
       })
 })
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+httpServer.listen(port)

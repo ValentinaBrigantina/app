@@ -7,6 +7,7 @@ const router = Router()
 
 router.get('/', petController.renderGallery)
 router.get('/upload_image', petController.renderUploadImage)
+router.get('/chat', userController.renderChat)
 router.get('/sign_up', userController.renderSignUp)
 router.get('/sign_in', userController.renderSignIn)
 router.get('/pet', asyncErrorHandler(petController.getPets))

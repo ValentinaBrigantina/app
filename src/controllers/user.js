@@ -4,6 +4,10 @@ const { AppError } = require('../utils/app-errors')
 const { randomUUID } = require('crypto')
 const userModel = require('../models/user')
 
+exports.renderChat = (req, res)=> {
+    res.render('chat')
+}
+
 exports.renderSignUp = (req, res)=> {
     res.render('sign_up')
 }
