@@ -1,0 +1,14 @@
+extends layout.pug
+
+block content
+    .container.chat 
+        .chat_title 
+            h2 Chat
+        .messages 
+            ul#messages.messages_content
+        form#message_box(name="publish") 
+            textarea#message_input(type="text", name="message", placeholder="Type message...")
+            button.message_submit.waves-effect.waves-light(type="submit") Send 
+
+    script(src='/socket.io/socket.io.js')
+    script(src='/scripts/chat.js')
