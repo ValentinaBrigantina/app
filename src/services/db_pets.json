@@ -23,5 +23,11 @@
         "name": "Holi",
         "image": "images/orange-white-kitten.jpg",
         "id": "2f2848bd-c59d-41d4-8797-814f0bbbed0b"
+    },
+    {
+        "name": "Barsik",
+        "originalFilename": "AF7D2235-3D01-4564-939F-3FF3F073093D.jpeg",
+        "image": "images/3444e499-adf2-4812-8ef1-d775f0351c29.jpeg",
+        "id": "788a5d13-abec-424a-a5ef-3249b8412172"
     }
 ]
