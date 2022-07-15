@@ -11,7 +11,7 @@ const { Server } = require("socket.io")
 const app = express()
 const httpServer = createServer(app)
 const io = new Server(httpServer)
-const socketHandlers = require('./controllers/socket')
+const { socketHandlers } = require('./controllers/socket')
 
 io.on("connection", (socket) => {
   for (let [name, handler] of Object.entries(socketHandlers)) {
