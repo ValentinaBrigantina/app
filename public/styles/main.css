@@ -121,3 +121,9 @@ input[type="submit"] {
 .message_submit:focus {
     color: #fff;
 }
+
+.warning {
+    color: #777;
+    text-transform: uppercase;
+    text-align: center;
+}

@@ -8,13 +8,6 @@ const onloadHandler = async () => {
     const sidenavs = document.querySelectorAll('.sidenav')
     M.Sidenav.init(sidenavs)
 
-    // upload.addEventListener('click', async (e) => {
-    //     if (!nameImage.value) {
-    //         e.preventDefault()
-    //         alert('Picture not added')
-    //     }
-    // })
-
     signOut.addEventListener('click', async () => {
        localStorage.removeItem('token')
     })
