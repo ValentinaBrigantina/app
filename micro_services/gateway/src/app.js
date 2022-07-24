@@ -23,7 +23,6 @@ io.on("connection", (socket) => {
 })
 
 const router = require('./router')
-
 const port = parseInt(process.env.PORT) || 3000
 
 app.set('views', join(__dirname, 'views'))

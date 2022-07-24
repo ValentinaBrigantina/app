@@ -1,0 +1,24 @@
+{
+  "name": "script",
+  "license": "MIT",
+  "devDependencies": {
+    "prisma": "^3.12.0"
+  },
+  "scripts": {
+    "dev": "nodemon src/app.js",
+    "prisma:migrate": "./node_modules/.bin/prisma migrate dev",
+    "prisma:migrate:reset": "./node_modules/.bin/prisma migrate reset",
+    "prisma:migrate:status": "./node_modules/.bin/prisma migrate status",
+    "prisma:format": "./node_modules/.bin/prisma format",
+    "prisma:init": "./node_modules/.bin/prisma init",
+    "prisma:generate": "./node_modules/.bin/prisma generate",
+    "prisma:studio": "./node_modules/.bin/prisma studio"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.12.0",
+    "ajv": "^8.11.0",
+    "ajv-formats": "^2.1.1",
+    "express": "^4.18.1",
+    "nodemon": "^2.0.19"
+  }
+}

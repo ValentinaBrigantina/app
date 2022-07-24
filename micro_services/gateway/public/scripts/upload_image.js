@@ -1,5 +1,3 @@
-console.log('token', localStorage.token);
-
 if (!localStorage.token) {
     const containerUpload = document.querySelector('.containerUpload')
 

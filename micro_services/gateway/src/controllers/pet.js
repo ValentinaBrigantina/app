@@ -1,5 +1,4 @@
 const { randomUUID } = require('crypto')
-const { resolve } = require('path')
 const petModel = require('../models/pet')
 
 exports.renderGallery = (req, res) => {

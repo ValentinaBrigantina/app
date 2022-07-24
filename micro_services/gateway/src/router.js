@@ -13,7 +13,7 @@ router.get('/messages', asyncErrorHandler(socketController.getMessage))
 router.get('/sign_up', userController.renderSignUp)
 router.get('/sign_in', userController.renderSignIn)
 router.get('/pet', asyncErrorHandler(petController.getPets))
-router.post('/user', asyncErrorHandler(userController.addNewUser))
+router.post('/user', asyncErrorHandler(userController.createUser))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
 router.post('/image/upload', asyncErrorHandler(petController.uploadPet))
 

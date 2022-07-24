@@ -12,9 +12,7 @@ const createSlide = (path, name) => {
 (async () => {
 
     const response = await fetch(`${constants.url}/pet`)
-    console.log('response', response)
     const pets = await (response.ok ? response.json() : [])
-    console.log('pets', pets);
     const slider = document.querySelector('.slides')
 
     pets.forEach(pet => {
