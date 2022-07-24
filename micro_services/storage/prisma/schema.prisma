@@ -1,0 +1,28 @@
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Pet {
+  id               Int    @id @default(autoincrement())
+  name             String?
+  originalFilename String
+  image            String
+}
+
+model User {
+  id           Int    @id @default(autoincrement())
+  name         String @unique
+  passwordHash String
+}
+
+model Chat {
+  id      Int    @id @default(autoincrement())
+  message String
+  date    String
+  author  String
+}
