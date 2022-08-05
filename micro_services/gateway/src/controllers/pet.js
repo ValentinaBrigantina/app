@@ -1,5 +1,5 @@
-const { randomUUID } = require('crypto')
-const petModel = require('../models/pet')
+const { uploadFileToFileSys } = require('../services/upload')
+const { createNewPet, getPetsList } = require('../services/data_client')
 
 exports.renderGallery = (req, res) => {
     res.render('main_page')
@@ -10,25 +10,13 @@ exports.renderUploadImage = (req, res) => {
 }
 
 exports.getPets = async (req, res) => {
-    const petsList = await petModel.fetchAllPets()
+    const petsList = await getPetsList()
     res.send(petsList)
 }
 
 exports.uploadPet = async (req, res) => {
-    const form = petModel.upload()
-    form.parse(req, async (err, { petName }, { multipleFiles }) => {
-        const petData = {
-            "name": petName,
-            "originalFilename": multipleFiles.originalFilename,
-            "image": `images/${multipleFiles.newFilename}`,
-            "id": randomUUID()
-        }
-        if (multipleFiles.size === 0) return
-        if (err) {
-            return reject(err)
-        }
-        await petModel.addNewPet(petData)
+    const petData = await uploadFileToFileSys(req)
+    await createNewPet(petData)
         
-        res.render('success_upload')
-    })
+    res.render('success_upload')
 }
