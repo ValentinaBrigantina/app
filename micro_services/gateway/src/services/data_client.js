@@ -7,3 +7,7 @@ exports.getUserByName = (name) => {
         .json()
         .then(data => data ? data : null)
 }
+
+exports.createNewPet = (json) => got.post('http://localhost:4000/image/upload', { json }).json()
+
+exports.getPetsList = () => got.get('http://localhost:4000/pet').json()

@@ -1,8 +1,6 @@
 const { omit } = require('lodash')
 const { createHash, createJwtTokenAsync } = require('../services/auth')
 const { AppError } = require('../utils/app-errors')
-const { randomUUID } = require('crypto')
-const userModel = require('../models/user')
 const {  getUserByName, createNewUser } = require('../services/data_client')
 
 exports.renderSignUp = (req, res)=> {
