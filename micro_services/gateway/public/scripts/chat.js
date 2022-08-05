@@ -1,9 +1,19 @@
 const socket = io()
 
-const createMessage = (message) => {
+const createMessage = (name, message, date) => {
     return `
         <li>
-            ${message}
+            <div class=item_message>
+                <div class=name_message>
+                    ${name}
+                </div>
+                <div class=text_message>
+                    ${message}
+                </div>
+                <div class=date_message>
+                    ${date}
+                </div>
+            </div>
         </li>
     `
 }
@@ -21,8 +31,8 @@ const getDate = () => {
     const response = await fetch(`${constants.url}/messages`)
     const chatMessage = await (response.ok ? response.json() : [])
     chatMessage.forEach(message => {
-        const text = createMessage(message.message)
-        messages.insertAdjacentHTML('beforeend', text)
+        const content = createMessage('name', message.message, message.date)
+        messages.insertAdjacentHTML('beforeend', content)
     })
 })()
 
@@ -40,7 +50,6 @@ form.addEventListener('submit', function(e) {
 })
 
 socket.on('onChatMessage', function(msg) {
-    var item = document.createElement('li')
-    item.textContent = msg.message
-    messages.appendChild(item)
+    const item = createMessage(msg.author, msg.message, msg.date)
+    messages.insertAdjacentHTML('beforeend', item)
 })
