@@ -10,6 +10,7 @@ const createAlert = (message, href) => {
         </div>
     `
 }
+
 let userData = {}
     name_user.addEventListener('input', (event) => {
         userData.name = event.target.value

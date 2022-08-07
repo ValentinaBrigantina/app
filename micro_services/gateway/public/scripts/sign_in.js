@@ -1,3 +1,16 @@
+const createAlert = (message, href) => {
+    return `
+        <div class="newsMessage">
+            <h1 class="newsMessage">
+                ${message}
+            </h1>
+            <button id="comeback" class="waves-effect waves-light btn" onclick="window.location.href = '${href}'">
+                OK
+            </button>
+        </div>
+    `
+}
+
 let userDataLogin = {}
 name_user2.addEventListener('input', (event) => {
     userDataLogin.name = event.target.value
@@ -18,12 +31,19 @@ submit_login.addEventListener('click', async () => {
         },
         body: JSON.stringify(userDataLogin)
     })
-    let token = await response.json()
+    let data = await response.json()
     
-    if (token.token) {
-        localStorage.setItem('token', JSON.stringify(token.token))
+    if (data.token) {
+        localStorage.setItem('token', JSON.stringify(data.token))
     }
     userDataLogin = {}
     name_user2.value = ''
     password2.value = ''
+
+    if (response.ok) {
+        const form = document.querySelector('.form')
+        const main = document.querySelector('.main')
+        form.remove()
+        main.insertAdjacentHTML('afterbegin', createAlert(`Hello, ${data.name}!<br/>Want to upload photos?`, 'http://127.0.0.1:3000/upload_image'))
+    }
 })
