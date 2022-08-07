@@ -156,3 +156,14 @@ input[type="submit"] {
     text-transform: uppercase;
     text-align: center;
 }
+
+.newsMessage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1.newsMessage {
+    font-size: 1.8rem;
+    color: #777;
+}

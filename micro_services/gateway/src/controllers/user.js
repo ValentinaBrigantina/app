@@ -11,6 +11,10 @@ exports.renderSignIn = (req, res)=> {
     res.render('sign_in')
 }
 
+exports.renderSignOut = (req, res)=> {
+    res.render('log_out')
+}
+
 exports.createUser = async (req, res) => {
     const { password, name } = req.body
     const passwordHash = createHash(password)
