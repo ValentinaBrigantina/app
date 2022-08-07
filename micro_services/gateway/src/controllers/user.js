@@ -41,5 +41,5 @@ exports.authenticateUser = async (req, res) => {
         sub: currentUser.id,
         iat: Math.floor(Date.now() / 1000),
     })
-    res.send({ token })
+    res.send({ token, name })
 }

@@ -166,4 +166,6 @@ input[type="submit"] {
 h1.newsMessage {
     font-size: 1.8rem;
     color: #777;
+    text-align: center;
+    line-height: inherit;
 }
