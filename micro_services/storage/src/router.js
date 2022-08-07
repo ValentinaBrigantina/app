@@ -5,6 +5,7 @@ const petModel = require('./models/pet')
 const chatModel = require('./models/chat')
 const userSchema = require('./schemas/user')
 const petSchema = require('./schemas/pet')
+const chatSchema = require('./schemas/chat')
 const validationMiddleware = require('./middleware/validation-middleware')
 
 const router = Router()
@@ -12,6 +13,9 @@ const router = Router()
 router.get('/pet', petModel.getList)
 router.post('/user', validationMiddleware(userSchema.createNewUser), userModel.createNewUser)
 router.post('/user/login', userModel.getUserByName)
+router.post('/user/name', userModel.getUserById)
 router.post('/image/upload', validationMiddleware(petSchema.createNewPet), petModel.createNewPet)
+router.post('/chat', validationMiddleware(chatSchema.createNewMessage), chatModel.createNewMessage)
+router.get('/chat/list', chatModel.getList)
 
 module.exports = router

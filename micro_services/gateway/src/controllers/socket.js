@@ -1,14 +1,16 @@
-const socketModel = require('../models/socket')
 const { parsingDate } = require('../utils/date-parsing')
-
-const addMessageToJson = async (data) => {
-    const result = await socketModel.addNewMessage(data)
-}
+const { getIdFromToken } = require('../services/auth')
+const {  getUserById, createNewMessage, getMessagesList } = require('../services/data_client')
 
 exports.socketHandlers = {
     async onChatMessage(socket, data) {
+        if (data.author !== 'unknown') {
+            const authorId = getIdFromToken(data.author)
+            const currentUser = await getUserById(authorId)
+            data.author = currentUser.name
+        }
         data.date = parsingDate(data.date)
-        await addMessageToJson(data)
+        await createNewMessage(data)
         return data
     }
 }
@@ -18,6 +20,6 @@ exports.renderChat = (req, res)=> {
 }
 
 exports.getMessage = async (req, res) => {
-    const messagesList = await socketModel.fetchAllMessages()
+    const messagesList = await getMessagesList()
     res.send(messagesList)
 }

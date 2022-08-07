@@ -20,7 +20,7 @@ exports.createUser = async (req, res) => {
     })
     const result = omit(resultData, ['passwordHash'])
     res.send(result)
-  }
+}
 
 exports.authenticateUser = async (req, res) => {
     const { name, password } = req.body

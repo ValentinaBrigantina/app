@@ -18,3 +18,15 @@ exports.getUserByName = async (req, res) => {
     })
     res.send(user)
 }
+
+exports.getUserById = async (req, res) => {
+    const user = await dbClient.user.findUnique({
+        where: { id: req.body.id },
+        select: {
+            id: true,
+            name: true,
+            passwordHash: true,
+        },
+    })
+    res.send(user)
+}

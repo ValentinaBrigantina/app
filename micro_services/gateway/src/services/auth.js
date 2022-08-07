@@ -22,6 +22,12 @@ exports.createJwtTokenAsync = (payload = {}) => new Promise((resolve, reject) =>
     })
 })
 
+exports.getIdFromToken = (token) => {
+    const str = token.slice(1, -1)
+    const decodeToken = decode(str)
+    return decodeToken.sub
+}
+
 exports.checkAuth = (req, res, next) => {
     const { authorization } = req.headers
     if (!authorization) {
