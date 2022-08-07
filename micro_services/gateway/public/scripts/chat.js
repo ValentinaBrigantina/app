@@ -31,7 +31,7 @@ const getDate = () => {
     const response = await fetch(`${constants.url}/messages`)
     const chatMessage = await (response.ok ? response.json() : [])
     chatMessage.forEach(message => {
-        const content = createMessage('name', message.message, message.date)
+        const content = createMessage(message.author, message.message, message.date)
         messages.insertAdjacentHTML('beforeend', content)
     })
 })()
@@ -43,7 +43,7 @@ form.addEventListener('submit', function(e) {
             id: Date.now(),
             message: input.value,
             date: getDate(),
-            author: localStorage.token || 'anon'
+            author: localStorage.token || 'unknown'
         })
         input.value = ''
     }
