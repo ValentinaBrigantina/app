@@ -1,9 +1,42 @@
 version: '3.8'
 
+volumes:
+  db_data:
+
 services:
-  database:
+  db:
     image: mysql:5
     command: --default-authentication-plugin=mysql_native_password
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: example
+      MYSQL_ROOT_PASSWORD: storage
+      MYSQL_DATABASE: storage
+    volumes:
+      - db_data:/var/lib/mysql
+    ports:
+      - 33006:3306
+
+  storage:
+    container_name: storage_mysql
+    build: 
+      context: ./micro_services/storage
+      dockerfile: dev.Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 5555:5555
+    environment:
+      - PORT=6000
+
+  gateway:
+    container_name: gateway
+    build:
+      context: ./micro_services/gateway
+      dockerfile: dev.Dockerfile
+    depends_on:
+      - storage
+    environment:
+      - PORT=6000
+      - STORAGE_URL=http://storage:6000
+    ports:
+      - 3000:6000

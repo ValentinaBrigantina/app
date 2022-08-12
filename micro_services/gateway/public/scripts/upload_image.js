@@ -7,9 +7,11 @@ if (!localStorage.token) {
     containerUpload.replaceWith(div)
 }
 
-upload.addEventListener('click', async (e) => {
-    if (!nameImage.value) {
-        e.preventDefault()
-        alert('Picture not added')
-    }
-})
+if (localStorage.token) {
+    upload.addEventListener('click', async (e) => {
+        if (!nameImage.value) {
+            e.preventDefault()
+            alert('Picture not added')
+        }
+    })
+}
