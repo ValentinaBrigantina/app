@@ -40,7 +40,6 @@ form.addEventListener('submit', function(e) {
     e.preventDefault()
     if (input.value) {
         socket.emit('onChatMessage', {
-            id: Date.now(),
             message: input.value,
             date: getDate(),
             author: localStorage.token || 'unknown'

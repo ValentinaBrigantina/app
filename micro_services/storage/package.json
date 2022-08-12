@@ -9,9 +9,8 @@
     "prisma:migrate": "./node_modules/.bin/prisma migrate dev",
     "prisma:migrate:reset": "./node_modules/.bin/prisma migrate reset",
     "prisma:migrate:status": "./node_modules/.bin/prisma migrate status",
-    "prisma:format": "./node_modules/.bin/prisma format",
-    "prisma:init": "./node_modules/.bin/prisma init",
-    "prisma:generate": "./node_modules/.bin/prisma generate",
+    "prisma:init": "docker exec -ti $(docker ps -q -f name=storage_mysql) sh -c \"./node_modules/.bin/prisma init\"",
+    "prisma:generate": "docker exec -ti $(docker ps -q -f name=storage_mysql) sh -c \"./node_modules/.bin/prisma generate\"",
     "prisma:studio": "./node_modules/.bin/prisma studio"
   },
   "dependencies": {

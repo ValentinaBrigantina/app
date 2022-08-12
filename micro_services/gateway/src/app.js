@@ -4,6 +4,7 @@ require('dotenv').config({
 })
 
 const express = require('express')
+const cors = require('cors')
 const { isNumber } = require('lodash')
 const { createServer } = require("http")
 const { Server } = require("socket.io")
@@ -24,6 +25,10 @@ io.on("connection", (socket) => {
 
 const router = require('./router')
 const port = parseInt(process.env.PORT) || 3000
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors())
+}
 
 app.set('views', join(__dirname, 'views'))
 app.set('view engine', 'pug')
