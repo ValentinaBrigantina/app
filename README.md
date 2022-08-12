@@ -3,3 +3,4 @@
 # Stack
 - express.js
 - pug.js
+- prisma
