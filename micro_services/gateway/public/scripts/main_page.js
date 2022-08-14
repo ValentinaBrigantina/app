@@ -25,4 +25,18 @@ const createSlide = (path, name) => {
             interval: 20000
         }
     )
+
+    if (localStorage.token) {
+        const response = await fetch(`${constants.url}/token`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json;charset=utf-8'
+            },
+            body: JSON.stringify({token: localStorage.token})
+        })
+        const data = await response.json()
+        if (!data.name) {
+            localStorage.removeItem('token')
+        }
+    }
 })()

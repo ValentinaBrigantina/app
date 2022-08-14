@@ -1,7 +1,7 @@
 const { omit } = require('lodash')
-const { createHash, createJwtTokenAsync } = require('../services/auth')
+const { createHash, createJwtTokenAsync, getIdFromToken } = require('../services/auth')
 const { AppError } = require('../utils/app-errors')
-const {  getUserByName, createNewUser } = require('../services/data_client')
+const {  getUserByName, createNewUser, getUserById } = require('../services/data_client')
 
 exports.renderSignUp = (req, res)=> {
     res.render('sign_up')
@@ -42,4 +42,11 @@ exports.authenticateUser = async (req, res) => {
         iat: Math.floor(Date.now() / 1000),
     })
     res.send({ token, name })
+}
+
+exports.userVerification = async (req, res) => {
+    const { token } = req.body
+    const authorId = await getIdFromToken(token)
+    const currentUser = await getUserById(authorId)
+    res.send(currentUser || {})
 }

@@ -2,6 +2,7 @@ version: '3.8'
 
 volumes:
   db_data:
+  gateway_images:
 
 services:
   db:
@@ -33,6 +34,8 @@ services:
     build:
       context: ./micro_services/gateway
       dockerfile: dev.Dockerfile
+    volumes:
+      - gateway_images:/app/public/images
     depends_on:
       - storage
     environment:
