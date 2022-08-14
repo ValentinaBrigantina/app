@@ -22,7 +22,7 @@ model User {
 
 model Chat {
   id      Int    @id @default(autoincrement())
-  message String
+  message String @db.VarChar(700)
   date    String
   author  String
 }
