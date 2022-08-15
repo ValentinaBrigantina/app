@@ -1,4 +1,3 @@
-const { parsingDate } = require('../utils/date-parsing')
 const { getIdFromToken } = require('../services/auth')
 const {  getUserById, createNewMessage, getMessagesList } = require('../services/data_client')
 
@@ -9,7 +8,6 @@ exports.socketHandlers = {
             const currentUser = await getUserById(authorId)
             data.author = currentUser.name
         }
-        data.date = parsingDate(data.date)
         await createNewMessage(data)
         return data
     }

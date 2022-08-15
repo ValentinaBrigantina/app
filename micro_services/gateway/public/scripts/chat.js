@@ -23,7 +23,14 @@ const form = document.getElementById('message_box')
 const input = document.getElementById('message_input')
 
 const getDate = () => {
-    const date = new Date()
+    const options = {
+        day: "numeric",
+        month: "long",
+        hour: "numeric",
+        minute: "numeric",
+        hourCycle: "h24",
+    }
+    const date = new Date().toLocaleString('en-US', options)
     return date
 }
 
