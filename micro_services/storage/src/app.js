@@ -20,5 +20,5 @@ app.use((err, req, res, next) => {
 app.use(router)
 
 app.listen(port, () => {
-    console.log(`We are listeting internal http://127.0.0.1:${port}`)
+    console.log(`We are listening internal http://127.0.0.1:${port}`)
 })
