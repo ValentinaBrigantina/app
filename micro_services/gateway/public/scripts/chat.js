@@ -41,6 +41,7 @@ const getDate = () => {
         const content = createMessage(message.author, message.message, message.date)
         messages.insertAdjacentHTML('beforeend', content)
     })
+    messages.scrollTop = messages.scrollHeight
 })()
 
 form.addEventListener('submit', function(e) {
@@ -58,4 +59,5 @@ form.addEventListener('submit', function(e) {
 socket.on('onChatMessage', function(msg) {
     const item = createMessage(msg.author, msg.message, msg.date)
     messages.insertAdjacentHTML('beforeend', item)
+    messages.scrollTop = messages.scrollHeight
 })
