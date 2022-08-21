@@ -11,30 +11,44 @@ const createAlert = (message, href) => {
     `
 }
 
+const name_user = document.getElementById('name_user')
+const password = document.getElementById('password')
+const submit_signup = document.getElementById('submit_signup')
 let userData = {}
-    name_user.addEventListener('input', (event) => {
-        userData.name = event.target.value
+
+name_user.addEventListener('input', e => {
+    userData.name = e.target.value
+})
+
+password.addEventListener('input', e => {
+    userData.password = e.target.value
+})
+
+const submitForm = async () => {
+    const response = await fetch(`${constants.url}/user`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify(userData)
     })
-    
-    password.addEventListener('input', (event) => {
-        userData.password = event.target.value
-    })
-    
-    submit_signup.addEventListener('click', async () => {
-        const response = await fetch(`${constants.url}/user`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json;charset=utf-8'
-            },
-            body: JSON.stringify(userData)
-        })
-        userData = {}
-        name_user.value = ''
-        password.value = ''
-        if (response.ok) {
-            const form = document.querySelector('.form')
-            const main = document.querySelector('.main')
-            form.remove()
-            main.insertAdjacentHTML('afterbegin', createAlert('Now you can login', 'http://127.0.0.1:3000/sign_in'))
-        }
-    })
+    userData = {}
+    name_user.value = ''
+    password.value = ''
+    if (response.ok) {
+        const form = document.querySelector('.form')
+        const main = document.querySelector('.main')
+        form.remove()
+        main.insertAdjacentHTML('afterbegin', createAlert('Now you can login', 'http://127.0.0.1:3000/sign_in'))
+        const button = document.getElementById('comeback')
+        button.focus()
+    }
+}
+
+submit_signup.addEventListener('click', submitForm)
+
+password.addEventListener('keyup', e => {
+    if(e.key === 'Enter') {
+        submitForm()
+    }
+})
