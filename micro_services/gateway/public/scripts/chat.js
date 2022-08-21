@@ -1,7 +1,7 @@
 const socket = io()
 
-const createMessage = (name, message, date) => {
-    return `
+const createMessage = (name, message, date) => (
+    `
         <li>
             <div class=item_message>
                 <div class=name_message>
@@ -16,7 +16,7 @@ const createMessage = (name, message, date) => {
             </div>
         </li>
     `
-}
+)
 
 const messages = document.getElementById('messages')
 const form = document.getElementById('message_box')
@@ -44,8 +44,7 @@ const getDate = () => {
     messages.scrollTop = messages.scrollHeight
 })()
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault()
+const socketEmit = () => {
     if (input.value) {
         socket.emit('onChatMessage', {
             message: input.value,
@@ -54,9 +53,20 @@ form.addEventListener('submit', function(e) {
         })
         input.value = ''
     }
+}
+
+input.addEventListener('keyup', e => {
+    if(e.key === 'Enter') {
+        socketEmit()
+    }
 })
 
-socket.on('onChatMessage', function(msg) {
+form.addEventListener('submit', e => {
+    e.preventDefault()
+    socketEmit()
+})
+
+socket.on('onChatMessage', msg => {
     const item = createMessage(msg.author, msg.message, msg.date)
     messages.insertAdjacentHTML('beforeend', item)
     messages.scrollTop = messages.scrollHeight
