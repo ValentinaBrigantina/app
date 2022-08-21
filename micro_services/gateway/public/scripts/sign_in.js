@@ -20,8 +20,7 @@ password2.addEventListener('input', (event) => {
     userDataLogin.password = event.target.value
 })
 
-submit_login.addEventListener('click', async () => {
-
+const submitForm = async () => {
     localStorage.removeItem('token')
 
     const response = await fetch(`${constants.url}/user/login`, {
@@ -45,5 +44,15 @@ submit_login.addEventListener('click', async () => {
         const main = document.querySelector('.main')
         form.remove()
         main.insertAdjacentHTML('afterbegin', createAlert(`Hello, ${data.name}!<br/>Want to upload photos?`, 'http://127.0.0.1:3000/upload_image'))
+        const button = document.getElementById('comeback')
+        button.focus()
+    }
+}
+
+submit_login.addEventListener('click', submitForm)
+
+password2.addEventListener('keyup', e => {
+    if(e.key === 'Enter') {
+        submitForm()
     }
 })
