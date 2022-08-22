@@ -12,7 +12,8 @@ main {
 
 .main {
     width: 90%;
-    margin-top: 50px;
+    margin-top: 30px;
+    padding: 30px;
 }
 
 h5 {
@@ -24,6 +25,9 @@ h5 {
     display: block;
     width: 550px;
     margin: 70px auto 70px;
+    background-color: rgb(249, 249, 249);
+    border-radius: 20px;
+    padding: 40px;
 }
 
 
@@ -38,13 +42,13 @@ input[type="submit"] {
 .chat {
     width: 100%;
     padding: 5px;
-    margin-bottom: 20px;
     background: transparent;
     border-radius: 20px;
     border: 2px solid #809f9b;
     display: flex;
     justify-content: space-between;
     flex-direction: column;
+    background-color: white;
 }
 
 .chat_title {
@@ -55,9 +59,7 @@ input[type="submit"] {
 }
 
 .messages {
-    overflow-y: auto;
     margin: auto 50px;
-    height: 400px;
 }
 
 #messages {
@@ -65,19 +67,11 @@ input[type="submit"] {
     overflow-y: auto;
 }
 
-.messages-content {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 101%;
-    width: 100%;
-}
-
 .item_message {
     display: flex;
     flex-direction: column;
     align-items: baseline;
-    background-color: rgb(247, 247, 247);
+    background-color: rgb(249, 249, 249);
     margin: 2px auto;
     border-radius: 20px;
 }
