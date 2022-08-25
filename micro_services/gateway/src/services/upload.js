@@ -31,7 +31,7 @@ exports.uploadFileToAvatar = (req) => new Promise(((resolve, reject) => {
         resolve ({
             "name": name_user,
             "password": password,
-            "image": `images/users/${avatar.newFilename}`,
+            "image": avatar.originalFilename ? `images/users/${avatar.newFilename}` : "",
             })
     })
 }))
