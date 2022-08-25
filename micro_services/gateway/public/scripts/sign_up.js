@@ -13,7 +13,7 @@ const createAlert = (message, href) => {
 
 const name_user = document.getElementById('name_user')
 const password = document.getElementById('password')
-const submit_signup = document.getElementById('submit_signup')
+const form_sign_up = document.getElementById('form_sign_up')
 let userData = {}
 
 name_user.addEventListener('input', e => {
@@ -24,17 +24,15 @@ password.addEventListener('input', e => {
     userData.password = e.target.value
 })
 
-const submitForm = async () => {
+form_sign_up.onsubmit = async (e) => {
+    e.preventDefault()
+    if (!userData.password || !userData.name) {
+        return
+    }
     const response = await fetch(`${constants.url}/user`, {
         method: 'POST',
-        headers: {
-            'Content-Type': 'application/json;charset=utf-8'
-        },
-        body: JSON.stringify(userData)
+        body: new FormData(form_sign_up)
     })
-    userData = {}
-    name_user.value = ''
-    password.value = ''
     if (response.ok) {
         const form = document.querySelector('.form')
         const main = document.querySelector('.main')
@@ -44,11 +42,3 @@ const submitForm = async () => {
         button.focus()
     }
 }
-
-submit_signup.addEventListener('click', submitForm)
-
-password.addEventListener('keyup', e => {
-    if(e.key === 'Enter') {
-        submitForm()
-    }
-})

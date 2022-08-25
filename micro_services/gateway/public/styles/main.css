@@ -159,3 +159,24 @@ h1.newsMessage {
     text-align: center;
     line-height: inherit;
 }
+
+.dropdown-content li > a {
+    font-size: 1rem; 
+}
+
+#signOut {
+    color: #b64d57
+}
+
+#dropdown1 {
+   top: -64px;
+}
+
+#submit_signup, #submit_login {
+    margin-left: 10px;
+    margin-top: 20px;
+}
+
+.row {
+    margin: 0 auto;
+}

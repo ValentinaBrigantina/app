@@ -4,14 +4,21 @@ block content
     .form
         h5 Sign up
         .row
-            form.col.s10
+            form#form_sign_up.col.s10
                 .row
                     .input-field.col.s10
-                        input#name_user.validate(type='text')
+                        input#name_user.validate(type='text' name='name_user')
                         label(for='name_user') Name
-        .row
-            .input-field.col.s10
-                input#password.validate(type='password')
-                label(for='password') Password
-        button#submit_signup.waves-effect.waves-light.btn-small.bt Sign up
+                .row
+                    .input-field.col.s10
+                        input#password.validate(type='password' name='password')
+                        label(for='password') Password
+                .row
+                    .input-field.file-field.col.s10
+                        .btn-small
+                            span Add avatar
+                            input(type='file' name='avatar')
+                        .file-path-wrapper
+                            input#avatarImage.file-path.validate(type='text' placeholder='Choose your photo')
+                input#submit_signup.btn(type='submit' value='Upload')
     script(src='/scripts/sign_up.js')

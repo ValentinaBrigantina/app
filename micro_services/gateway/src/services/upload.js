@@ -1,9 +1,9 @@
 const formidable = require('formidable')
 const { randomUUID } = require('crypto')
 
-exports.uploadFileToFileSys = (req) => new Promise(((resolve, reject) => {
+exports.uploadFileToGallery = (req) => new Promise(((resolve, reject) => {
     formidable({
-        uploadDir: `${process.cwd()}/public/images/`,
+        uploadDir: `${process.cwd()}/public/images/gallery/`,
         multiples: true,
         keepExtensions: true,
         filename: (name, ext, {originalFilename}) => `${randomUUID()}${ext}`,
@@ -15,7 +15,23 @@ exports.uploadFileToFileSys = (req) => new Promise(((resolve, reject) => {
         resolve ({
             "name": petName,
             "originalFilename": multipleFiles.originalFilename,
-            "image": `images/${multipleFiles.newFilename}`,
+            "image": `images/gallery/${multipleFiles.newFilename}`,
+            })
+    })
+}))
+
+exports.uploadFileToAvatar = (req) => new Promise(((resolve, reject) => {
+    formidable({
+        uploadDir: `${process.cwd()}/public/images/users`,
+    })
+        .parse(req, (err, { name_user, password }, { avatar }) => {
+        if (err) {
+            reject (err)
+        }
+        resolve ({
+            "name": name_user,
+            "password": password,
+            "image": `images/users/${avatar.newFilename}`,
             })
     })
 }))

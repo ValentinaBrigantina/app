@@ -11,33 +11,35 @@ const createAlert = (message, href) => {
     `
 }
 
-let userDataLogin = {}
-name_user2.addEventListener('input', (event) => {
-    userDataLogin.name = event.target.value
+const submit_login = document.getElementById('submit_login')
+const name_user = document.getElementById('name_user2')
+const password = document.getElementById('password2')
+let userData = {}
+
+name_user.addEventListener('input', (e) => {
+    userData.name = e.target.value
 })
 
-password2.addEventListener('input', (event) => {
-    userDataLogin.password = event.target.value
+password.addEventListener('input', (e) => {
+    userData.password = e.target.value
 })
 
 const submitForm = async () => {
     localStorage.removeItem('token')
-
     const response = await fetch(`${constants.url}/user/login`, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json;charset=utf-8'
         },
-        body: JSON.stringify(userDataLogin)
+        body: JSON.stringify(userData)
     })
     let data = await response.json()
-    
     if (data.token) {
         localStorage.setItem('token', JSON.stringify(data.token))
     }
-    userDataLogin = {}
-    name_user2.value = ''
-    password2.value = ''
+    userData = {}
+    name_user.value = ''
+    password.value = ''
 
     if (response.ok) {
         const form = document.querySelector('.form')
@@ -49,10 +51,10 @@ const submitForm = async () => {
     }
 }
 
-submit_login.addEventListener('click', submitForm)
-
-password2.addEventListener('keyup', e => {
-    if(e.key === 'Enter') {
-        submitForm()
+submit_login.addEventListener('click', (e) => {
+    e.preventDefault()
+    if (!userData.password || !userData.name) {
+        return
     }
+    submitForm()
 })
