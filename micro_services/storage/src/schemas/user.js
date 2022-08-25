@@ -8,6 +8,9 @@ exports.createNewUser = {
         name: {
             type: 'string',
         },
+        image: {
+            type: 'string'
+        }
     },
     required: ['passwordHash', 'name'],
     additionalProperties: true,

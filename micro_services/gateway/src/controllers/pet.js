@@ -1,4 +1,4 @@
-const { uploadFileToFileSys } = require('../services/upload')
+const { uploadFileToGallery } = require('../services/upload')
 const { createNewPet, getPetsList } = require('../services/data_client')
 
 exports.renderGallery = (req, res) => {
@@ -15,7 +15,7 @@ exports.getPets = async (req, res) => {
 }
 
 exports.uploadPet = async (req, res) => {
-    const petData = await uploadFileToFileSys(req)
+    const petData = await uploadFileToGallery(req)
     await createNewPet(petData)
         
     res.render('success_upload')

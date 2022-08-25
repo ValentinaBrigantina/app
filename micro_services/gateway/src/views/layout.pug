@@ -9,22 +9,42 @@ html
         link(rel='stylesheet', href='/styles/main.css')
     
     body
-        script(src='/scripts/index.js')
-        block header 
+        script(src='/scripts/constants.js')
+        block header
+            ul#dropdown1.dropdown-content
+                li
+                    a(href='#') Setting
+                li
+                    a#signOut(href='sign_out') Log out
             nav.teal.lighten-2
                 .nav-wrapper
-                    a.brand-logo.left(href='/') Gallery
-                    ul#nav-mobile.right
-                        li
-                            a#addImagePet(href='upload_image') Add photo
-                        li
+                    a.brand-logo(href='/') Gallery
+                    a.sidenav-trigger(href='#' data-target="mobile-demo")
+                        i.material-icons menu
+                    ul.right.hide-on-med-and-down
+                        li#btnAddImage
+                            a(href='upload_image') Add photo
+                        li#btnChat
                             a(href='chat') Chat
-                        li
+                        li#btnSignUp
                             a(href='sign_up') Sign up
-                        li
+                        li#btnSignIn
                             a(href='sign_in') Sign in
-                        li
-                            a#signOut(href='sign_out') Sign out
+                        li#btnMyProfile
+                            a.dropdown-trigger(href='#' data-target='dropdown1') My profile
+                                i.material-icons.right arrow_drop_down
+            ul#mobile-demo.sidenav
+                li#btnAddImage
+                    a(href='upload_image') Add photo
+                li#btnChat
+                    a(href='chat') Chat
+                li#btnSignUp
+                    a(href='sign_up') Sign up
+                li#btnSignIn
+                    a(href='sign_in') Sign in
+                li#btnMyProfile
+                    a.dropdown-trigger(href='#' data-target='dropdown1') My profile
+                        i.material-icons.right arrow_drop_down
         main.container.colum 
             .main
                 block content
@@ -38,3 +58,4 @@ html
 
         block scripts 
             script(type='text/javascript', src='/scripts/materialize.js')
+            script(src='/scripts/index.js')

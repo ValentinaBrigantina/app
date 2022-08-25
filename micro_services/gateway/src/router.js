@@ -17,6 +17,7 @@ router.get('/pet', asyncErrorHandler(petController.getPets))
 router.post('/user', asyncErrorHandler(userController.createUser))
 router.post('/token', asyncErrorHandler(userController.userVerification))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
+// router.post('/avatar/upload', asyncErrorHandler(userController.uploadAvatar))
 router.post('/image/upload', asyncErrorHandler(petController.uploadPet))
 
 
