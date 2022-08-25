@@ -14,6 +14,7 @@ exports.getUserByName = async (req, res) => {
             id: true,
             name: true,
             passwordHash: true,
+            image: true,
         },
     })
     res.send(user)
@@ -26,6 +27,7 @@ exports.getUserById = async (req, res) => {
             id: true,
             name: true,
             passwordHash: true,
+            image: true,
         },
     })
     res.send(user)

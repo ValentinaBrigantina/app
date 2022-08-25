@@ -1,14 +1,13 @@
 const { getIdFromToken } = require('../services/auth')
-const {  getUserById, createNewMessage, getMessagesList } = require('../services/data_client')
+const {  getUserById, getUserByName, createNewMessage, getMessagesList } = require('../services/data_client')
 
 exports.socketHandlers = {
     async onChatMessage(socket, data) {
-        if (data.author !== 'unknown') {
-            const authorId = getIdFromToken(data.author)
-            const currentUser = await getUserById(authorId)
-            data.author = currentUser.name
-        }
+        const authorId = getIdFromToken(data.author)
+        const currentUser = await getUserById(authorId)
+        data.author = currentUser.name
         await createNewMessage(data)
+        data.avatar = currentUser.image
         return data
     }
 }
@@ -19,5 +18,11 @@ exports.renderChat = (req, res)=> {
 
 exports.getMessage = async (req, res) => {
     const messagesList = await getMessagesList()
-    res.send(messagesList)
+    const result = await Promise.all(
+        messagesList.map(async (item) => {
+        const currentUser = await getUserByName(item.author)
+        item.avatar = currentUser.image
+        return item
+    }))
+    res.send(result)
 }

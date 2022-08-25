@@ -1,10 +1,13 @@
 const socket = io()
 
-const createMessage = (name, message, date) => (
+const createMessage = (name, message, date, avatar) => (
     `
         <li>
             <div class=item_message>
                 <div class=name_message>
+                    <div class=avatar>
+                        <img class="responsive-img" src="${avatar}" alt="${name}">
+                    </div>
                     ${name}
                 </div>
                 <div class=text_message>
@@ -21,7 +24,6 @@ const createMessage = (name, message, date) => (
 const messages = document.getElementById('messages')
 const form = document.getElementById('message_box')
 const input = document.getElementById('message_input')
-
 const getDate = () => {
     const options = {
         day: "numeric",
@@ -38,7 +40,10 @@ const getDate = () => {
     const response = await fetch(`${constants.url}/messages`)
     const chatMessage = await (response.ok ? response.json() : [])
     chatMessage.forEach(message => {
-        const content = createMessage(message.author, message.message, message.date)
+        if (message.avatar === "") {
+            message.avatar = "images/service/ext.png" 
+        }
+        const content = createMessage(message.author, message.message, message.date, message.avatar)
         messages.insertAdjacentHTML('beforeend', content)
     })
     messages.scrollTop = messages.scrollHeight
@@ -56,7 +61,7 @@ const socketEmit = () => {
 }
 
 input.addEventListener('keyup', e => {
-    if(e.key === 'Enter') {
+    if (e.key === 'Enter') {
         socketEmit()
     }
 })
@@ -67,7 +72,10 @@ form.addEventListener('submit', e => {
 })
 
 socket.on('onChatMessage', msg => {
-    const item = createMessage(msg.author, msg.message, msg.date)
+    if (msg.avatar === "") {
+        msg.avatar = "images/service/ext.png" 
+    }
+    const item = createMessage(msg.author, msg.message, msg.date, msg.avatar)
     messages.insertAdjacentHTML('beforeend', item)
     messages.scrollTop = messages.scrollHeight
 })
