@@ -1,7 +1,7 @@
-exports.createNewPet = {
+exports.createNewPhoto = {
     type: 'object',
     properties: {
-        name: {
+        caption: {
             type: 'string',
         },
         originalFilename: {

@@ -7,10 +7,10 @@ exports.createNewMessage = {
         date: {
             type: 'string',
         },
-        author: {
-            type: 'string',
+        authorId: {
+            type: 'number',
         },
     },
-    required: ['message', 'date', 'author'],
+    required: ['message', 'date', 'authorId'],
     additionalProperties: true,
 }

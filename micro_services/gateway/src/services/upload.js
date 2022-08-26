@@ -3,19 +3,20 @@ const { randomUUID } = require('crypto')
 
 exports.uploadFileToGallery = (req) => new Promise(((resolve, reject) => {
     formidable({
-        uploadDir: `${process.cwd()}/public/images/gallery/`,
+        uploadDir: `${process.cwd()}/public/images/gallery`,
         multiples: true,
         keepExtensions: true,
         filename: (name, ext, {originalFilename}) => `${randomUUID()}${ext}`,
     })
-        .parse(req, (err, { petName }, { multipleFiles }) => {
+        .parse(req, (err, { caption, authorId }, { photo }) => {
         if (err) {
             reject (err)
         }
         resolve ({
-            "name": petName,
-            "originalFilename": multipleFiles.originalFilename,
-            "image": `images/gallery/${multipleFiles.newFilename}`,
+            "caption": caption,
+            "originalFilename": photo.originalFilename,
+            "image": `images/gallery/${photo.newFilename}`,
+            "authorId": authorId
             })
     })
 }))

@@ -6,12 +6,13 @@
   },
   "scripts": {
     "dev": "nodemon src/app.js",
-    "prisma:migrate": "./node_modules/.bin/prisma migrate dev",
-    "prisma:migrate:reset": "./node_modules/.bin/prisma migrate reset",
-    "prisma:migrate:status": "./node_modules/.bin/prisma migrate status",
+    "prisma:migrate:docker": "./node_modules/.bin/prisma migrate dev",
+    "prisma:migrate:reset:docker": "./node_modules/.bin/prisma migrate reset",
+    "prisma:migrate:status:docker": "./node_modules/.bin/prisma migrate status",
     "prisma:init": "docker exec -ti $(docker ps -q -f name=storage_mysql) sh -c \"./node_modules/.bin/prisma init\"",
     "prisma:generate": "docker exec -ti $(docker ps -q -f name=storage_mysql) sh -c \"./node_modules/.bin/prisma generate\"",
-    "prisma:studio": "./node_modules/.bin/prisma studio"
+    "prisma:generate:docker": "./node_modules/.bin/prisma generate",
+    "prisma:studio:docker": "./node_modules/.bin/prisma studio"
   },
   "dependencies": {
     "@prisma/client": "^3.12.0",

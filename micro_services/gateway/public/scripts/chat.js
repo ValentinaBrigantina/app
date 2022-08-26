@@ -3,17 +3,17 @@ const socket = io()
 const createMessage = (name, message, date, avatar) => (
     `
         <li>
-            <div class=item_message>
-                <div class=name_message>
-                    <div class=avatar>
+            <div class="item_message">
+                <div class="name_message">
+                    <div class="avatar">
                         <img class="responsive-img" src="${avatar}" alt="${name}">
                     </div>
                     ${name}
                 </div>
-                <div class=text_message>
+                <div class="text_message">
                     ${message}
                 </div>
-                <div class=date_message>
+                <div class="date_message">
                     ${date}
                 </div>
             </div>
@@ -43,7 +43,7 @@ const getDate = () => {
         if (message.avatar === "") {
             message.avatar = "images/service/ext.png" 
         }
-        const content = createMessage(message.author, message.message, message.date, message.avatar)
+        const content = createMessage(message.name, message.message, message.date, message.avatar)
         messages.insertAdjacentHTML('beforeend', content)
     })
     messages.scrollTop = messages.scrollHeight
@@ -54,7 +54,7 @@ const socketEmit = () => {
         socket.emit('onChatMessage', {
             message: input.value,
             date: getDate(),
-            author: localStorage.token || 'unknown'
+            userToken: localStorage.token || 'unknown'
         })
         input.value = ''
     }
@@ -75,7 +75,7 @@ socket.on('onChatMessage', msg => {
     if (msg.avatar === "") {
         msg.avatar = "images/service/ext.png" 
     }
-    const item = createMessage(msg.author, msg.message, msg.date, msg.avatar)
+    const item = createMessage(msg.name, msg.message, msg.date, msg.avatar)
     messages.insertAdjacentHTML('beforeend', item)
     messages.scrollTop = messages.scrollHeight
 })
