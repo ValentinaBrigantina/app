@@ -7,7 +7,7 @@ const createSlide = (path, caption, name, avatar) => {
                  </div>
                  ${name}
             </div>
-            <div class="card-image">
+            <div class="card-image photo">
                 <img src="${path}">
             </div>
             <div class="card-content">
