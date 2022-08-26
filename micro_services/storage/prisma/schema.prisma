@@ -7,11 +7,13 @@ generator client {
   provider = "prisma-client-js"
 }
 
-model Pet {
+model Photo {
   id               Int    @id @default(autoincrement())
-  name             String?
+  caption          String? @default("") @db.VarChar(1000)
   originalFilename String
   image            String
+  author           User  @relation(fields: [authorId], references: [id])
+  authorId         Int
 }
 
 model User {
@@ -19,11 +21,14 @@ model User {
   name         String @unique
   passwordHash String
   image        String? @default("")
+  photo        Photo[]
+  message ChatMessage[]
 }
 
-model Chat {
+model ChatMessage {
   id      Int    @id @default(autoincrement())
-  message String @db.VarChar(700)
+  message String @db.VarChar(1000)
   date    String
-  author  String
+  authorId  Int
+  author   User @relation(fields: [authorId], references: [id])
 }

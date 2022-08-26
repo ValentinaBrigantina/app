@@ -21,13 +21,13 @@ exports.getUserById = (id) => {
         .then(data => data ? data : null)
 }
 
-exports.createNewPet = (json) => {
+exports.createNewPhoto = (json) => {
     const url = prepareUrl('image/upload')
     return got.post(url, { json }).json()
 }
 
-exports.getPetsList = () => {
-    const url = prepareUrl('pet')
+exports.getImagesList = () => {
+    const url = prepareUrl('gallery')
     return got.get(url).json()
 }
 

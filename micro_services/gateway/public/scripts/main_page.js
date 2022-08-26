@@ -1,27 +1,30 @@
-const createSlide = (path, name) => {
+const createSlide = (path, caption, name, avatar) => {
     return `
-        <li>
-            <img src=${path}>
-            <div class="caption center-align">
-                <h3>${name}</h3>
+        <div class="card">
+            <div class="name_message card-action">
+                <div class="avatar">
+                    <img class="responsive-img" src="${avatar}" alt="${name}">
+                 </div>
+                 ${name}
             </div>
-        </li>
+            <div class="card-image">
+                <img src="${path}">
+            </div>
+            <div class="card-content">
+                <p>${caption}</p>
+            </div>
+        </div>
+       
     `
 }
 
 (async () => {
-    const response = await fetch(`${constants.url}/pet`)
-    const pets = await (response.ok ? response.json() : [])
-    const slider = document.querySelector('.slides')
+    const response = await fetch(`${constants.url}/gallery`)
+    const images = await (response.ok ? response.json() : [])
+    const gallery = document.querySelector('.gallery')
 
-    pets.forEach(pet => {
-        const slide = createSlide(pet.image, pet.name)
-        slider.insertAdjacentHTML('beforeend', slide)
+    images.forEach(image => {
+        const slide = createSlide(image.image, image.caption, image.name, image.avatar)
+        gallery.insertAdjacentHTML('beforeend', slide)
     })
-
-    M.Slider.init(
-        document.querySelectorAll('.slider'), {
-            interval: 20000
-        }
-    )
 })()

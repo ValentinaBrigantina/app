@@ -1,24 +1,23 @@
 const { Router } = require('express')
-const petController = require('./controllers/pet')
+const galleryController = require('./controllers/gallery')
 const userController = require('./controllers/user')
 const asyncErrorHandler = require('./utils/async-error-handler')
 const socketController = require('./controllers/socket')
 
 const router = Router()
 
-router.get('/', petController.renderGallery)
-router.get('/upload_image', petController.renderUploadImage)
+router.get('/', galleryController.renderGallery)
+router.get('/upload_image', galleryController.renderUploadImage)
 router.get('/chat', socketController.renderChat)
 router.get('/messages', asyncErrorHandler(socketController.getMessage))
 router.get('/sign_up', userController.renderSignUp)
 router.get('/sign_in', userController.renderSignIn)
 router.get('/sign_out', userController.renderSignOut)
-router.get('/pet', asyncErrorHandler(petController.getPets))
+router.get('/gallery', asyncErrorHandler(galleryController.getImages))
 router.post('/user', asyncErrorHandler(userController.createUser))
 router.post('/token', asyncErrorHandler(userController.userVerification))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
-// router.post('/avatar/upload', asyncErrorHandler(userController.uploadAvatar))
-router.post('/image/upload', asyncErrorHandler(petController.uploadPet))
+router.post('/image/upload', asyncErrorHandler(galleryController.uploadPhoto))
 
 
 router.get('*', (req, res) => {

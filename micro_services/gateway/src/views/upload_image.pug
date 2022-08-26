@@ -5,16 +5,16 @@ block content
         .form
             h5 Add photo
             .row
-                form.col.s10.form-upload(action='/image/upload' enctype='multipart/form-data' method='POST')
+                form#form_upload.col.s10.form-upload
                     .row
                         .input-field.col.s10
-                            input#name_pets.validate(type='text' name='petName')
-                            label(for='name_pets') Name pets
+                            input#caption.validate(type='text' name='caption')
+                            label(for='caption') Write a caption
                     .row
                         .input-field.file-field.col.s10
                             .btn
                                 span File
-                                input(type='file' name='multipleFiles')
+                                input(type='file' name='photo')
                             .file-path-wrapper
                                 input#nameImage.file-path.validate(type='text' placeholder='Upload photo')
                     input#upload.waves-effect.waves-light.btn.send-image(type='submit' value='Upload')
