@@ -1,4 +1,4 @@
-const { uploadFileToGallery } = require('../services/upload')
+const { uploadFileToSys, parseFileToGallery } = require('../services/upload')
 const { createNewPhoto, getImagesList, getUserById } = require('../services/data_client')
 
 exports.renderGallery = (req, res) => {
@@ -22,7 +22,9 @@ exports.getImages = async (req, res) => {
 }
 
 exports.uploadPhoto = async (req, res) => {
-    const imageData = await uploadFileToGallery(req)
+    const pathToUpload = '/public/images/gallery'
+    const formUpload = uploadFileToSys(pathToUpload)
+    const imageData = await parseFileToGallery(formUpload, req)
     await createNewPhoto(imageData)
         
     res.send(imageData)
