@@ -48,7 +48,7 @@ form_upload.onsubmit = async (e) => {
         const form = document.querySelector('.form')
         const main = document.querySelector('.main')
         form.remove()
-        main.insertAdjacentHTML('afterbegin', createAlert('Thanks, pets uploaded', 'http://127.0.0.1:3000/'))
+        main.insertAdjacentHTML('afterbegin', createAlert('Thanks, photo uploaded', 'http://127.0.0.1:3000/'))
         const button = document.getElementById('comeback')
         button.focus()
     }
