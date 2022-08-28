@@ -2,7 +2,7 @@ const { omit } = require('lodash')
 const { createHash, createJwtTokenAsync, getIdFromToken } = require('../services/auth')
 const { AppError } = require('../utils/app-errors')
 const {  getUserByName, createNewUser, getUserById } = require('../services/data_client')
-const { uploadFileToAvatar } = require('../services/upload')
+const { uploadFileToSys, parseFileToProfile } = require('../services/upload')
 
 exports.renderSignUp = (req, res) => {
     res.render('sign_up')
@@ -21,7 +21,9 @@ exports.renderSignOut = (req, res) => {
 }
 
 exports.createUser = async (req, res) => {
-    const dataUser = await uploadFileToAvatar(req)
+    const pathToUpload = '/public/images/users'
+    const formUpload = uploadFileToSys(pathToUpload)
+    const dataUser = await parseFileToProfile(formUpload, req)
     const passwordHash = createHash(dataUser.password)
     const name = dataUser.name
     const image = dataUser.image

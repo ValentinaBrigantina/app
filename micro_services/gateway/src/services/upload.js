@@ -1,14 +1,18 @@
 const formidable = require('formidable')
 const { randomUUID } = require('crypto')
 
-exports.uploadFileToGallery = (req) => new Promise(((resolve, reject) => {
-    formidable({
-        uploadDir: `${process.cwd()}/public/images/gallery`,
+exports.uploadFileToSys = (path) =>  {
+    const form = formidable({
+        uploadDir: `${process.cwd()}${path}`,
         multiples: true,
         keepExtensions: true,
         filename: (name, ext, {originalFilename}) => `${randomUUID()}${ext}`,
     })
-        .parse(req, (err, { caption, authorId }, { photo }) => {
+    return form
+}
+
+exports.parseFileToGallery = (formUpload, req) => new Promise((resolve, reject) => {
+    formUpload.parse(req, (err, { caption, authorId }, { photo }) => {
         if (err) {
             reject (err)
         }
@@ -19,13 +23,11 @@ exports.uploadFileToGallery = (req) => new Promise(((resolve, reject) => {
             "authorId": authorId
             })
     })
-}))
+})
 
-exports.uploadFileToAvatar = (req) => new Promise(((resolve, reject) => {
-    formidable({
-        uploadDir: `${process.cwd()}/public/images/users`,
-    })
-        .parse(req, (err, { name_user, password }, { avatar }) => {
+
+exports.parseFileToProfile = (formUpload, req) => new Promise(((resolve, reject) => {
+    formUpload.parse(req, (err, { name_user, password }, { avatar }) => {
         if (err) {
             reject (err)
         }
