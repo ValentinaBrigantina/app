@@ -19,6 +19,7 @@ router.post('/user', asyncErrorHandler(userController.createUser))
 router.post('/token', asyncErrorHandler(userController.userVerification))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
 router.post('/image/upload', asyncErrorHandler(galleryController.uploadPhoto))
+router.put('/user/:userId', asyncErrorHandler(userController.updateUserById))
 
 
 router.get('*', (req, res) => {

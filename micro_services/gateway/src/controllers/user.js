@@ -58,3 +58,10 @@ exports.userVerification = async (req, res) => {
     const currentUser = await getUserById(authorId)
     res.send(currentUser || {})
 }
+
+exports.updateUserById = async (req, res) => {
+    console.log('req.body', req.body);
+    console.log('req.params', req.params);
+    console.log('req.params.userId', req.params.userId);
+    res.send(req.params)
+}
