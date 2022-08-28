@@ -7,23 +7,40 @@ const checkToken = async () => {
             },
             body: JSON.stringify({token: localStorage.token})
         })
-        const data = await response.json()
-        if (!data.name) {
+        const dataUser = await response.json()
+        if (!dataUser.name) {
             localStorage.removeItem('token')
         }
+        return dataUser
     }
 }
 
-const renderingNav = () => {
+const renderAvatar = (avatar, name) => (
+        `
+            <div class="avatar">
+                <img class="responsive-img" src="${avatar}" alt="${name}">
+            </div>
+        
+        `
+)
+
+const renderingNav = async () => {
     const btnAddImage = document.getElementById('btnAddImage')
     const btnChat = document.getElementById('btnChat')
     const btnSignUp = document.getElementById('btnSignUp')
     const btnSignIn = document.getElementById('btnSignIn')
     const btnMyProfile = document.getElementById('btnMyProfile')
 
+    const dataUser = await checkToken()
+
     if (localStorage.token) {
         btnSignUp.remove()
         btnSignIn.remove()
+
+        const image = dataUser.avatar ? dataUser.image : "images/service/ext.png"
+        const avatar = renderAvatar(image, dataUser.name)
+        btnMyProfile.insertAdjacentHTML('beforeend', avatar)
+
     } else {
         btnAddImage.remove()
         btnChat.remove()
@@ -32,8 +49,7 @@ const renderingNav = () => {
 }
 
 const onloadHandler = async () => {
-    await checkToken()
-    renderingNav()
+    await renderingNav()
     const sidenavs = document.querySelectorAll('.sidenav')
     const dropdown = document.querySelector('.dropdown-trigger')
     M.Sidenav.init(sidenavs)

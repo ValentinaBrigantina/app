@@ -24,6 +24,9 @@ const createSlide = (path, caption, name, avatar) => {
     const gallery = document.querySelector('.gallery')
 
     images.forEach(image => {
+        if (image.avatar === "") {
+            image.avatar = "images/service/ext.png" 
+        }
         const slide = createSlide(image.image, image.caption, image.name, image.avatar)
         gallery.insertAdjacentHTML('beforeend', slide)
     })

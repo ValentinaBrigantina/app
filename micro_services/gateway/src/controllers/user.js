@@ -12,6 +12,10 @@ exports.renderSignIn = (req, res) => {
     res.render('sign_in')
 }
 
+exports.renderSettingProfile = (req, res) => {
+    res.render('setting_profile')
+}
+
 exports.renderSignOut = (req, res) => {
     res.render('log_out')
 }
