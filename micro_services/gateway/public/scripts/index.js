@@ -36,7 +36,6 @@ const renderingNav = async () => {
     if (localStorage.token) {
         btnSignUp.remove()
         btnSignIn.remove()
-console.log('dataUser', dataUser);
         const image = dataUser.image ? dataUser.image : "images/service/ext.png"
         const avatar = renderAvatar(image, dataUser.name)
         btnMyProfile.insertAdjacentHTML('beforeend', avatar)

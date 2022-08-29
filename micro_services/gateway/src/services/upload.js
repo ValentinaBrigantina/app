@@ -31,10 +31,13 @@ exports.parseFileToProfile = (formUpload, req) => new Promise(((resolve, reject)
         if (err) {
             reject (err)
         }
-        resolve ({
+        const data = {
             "name": name_user,
             "password": password,
-            "image": avatar.originalFilename ? `images/users/${avatar.newFilename}` : "",
-            })
+        }
+        if (avatar.originalFilename) {
+            data.image = `images/users/${avatar.newFilename}`
+        }
+        resolve (data)
     })
 }))
