@@ -1,8 +1,9 @@
 const { omit } = require('lodash')
 const { createHash, createJwtTokenAsync, getIdFromToken } = require('../services/auth')
 const { AppError } = require('../utils/app-errors')
-const {  getUserByName, createNewUser, getUserById } = require('../services/data_client')
+const {  getUserByName, createNewUser, getUserById, updateUserData } = require('../services/data_client')
 const { uploadFileToSys, parseFileToProfile } = require('../services/upload')
+const pathToUpload = '/public/images/users'
 
 exports.renderSignUp = (req, res) => {
     res.render('sign_up')
@@ -21,7 +22,6 @@ exports.renderSignOut = (req, res) => {
 }
 
 exports.createUser = async (req, res) => {
-    const pathToUpload = '/public/images/users'
     const formUpload = uploadFileToSys(pathToUpload)
     const dataUser = await parseFileToProfile(formUpload, req)
     const passwordHash = createHash(dataUser.password)
@@ -61,9 +61,17 @@ exports.userVerification = async (req, res) => {
     res.send(currentUser || {})
 }
 
+exports.passwordVerification = async (req, res) => {
+    const { password, id } = req.body
+    const passwordHash = createHash(password)
+    const currentUser = await getUserById(id)
+    res.send((currentUser.passwordHash === passwordHash) ? true : false)
+}
+
 exports.updateUserById = async (req, res) => {
-    console.log('req.body', req.body);
-    console.log('req.params', req.params);
-    console.log('req.params.userId', req.params.userId);
-    res.send(req.params)
+    const formUpload = uploadFileToSys(pathToUpload)
+    const dataUser = await parseFileToProfile(formUpload, req)
+    dataUser.id = req.params.userId
+    const result = await updateUserData(dataUser)
+    res.send(result)
 }

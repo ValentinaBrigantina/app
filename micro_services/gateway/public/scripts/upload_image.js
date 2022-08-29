@@ -15,7 +15,7 @@ if (localStorage.token) {
     upload.addEventListener('click', async (e) => {
         if (!nameImage.value) {
             e.preventDefault()
-            alert('Picture not added')
+            M.toast({html: 'Picture not added', classes: 'alert'})
         }
     })
 }

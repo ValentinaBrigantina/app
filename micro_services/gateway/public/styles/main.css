@@ -207,3 +207,8 @@ h1.newsMessage {
     flex-direction: row;
     align-items: center;
 }
+
+.alert {
+    background-color: #a496a5;
+    color: #352e35;
+}

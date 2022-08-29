@@ -32,3 +32,15 @@ exports.getUserById = async (req, res) => {
     })
     res.send(user)
 }
+
+exports.updateUserData = async (req, res) => {
+    const { id, name, image } = req.body
+    const user = await dbClient.user.update({
+        where: { id: parseInt(id) },
+        data: {
+            name,
+            image,
+        }
+    })
+    res.send(user)
+}

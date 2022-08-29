@@ -21,6 +21,11 @@ exports.getUserById = (id) => {
         .then(data => data ? data : null)
 }
 
+exports.updateUserData = (json) => {
+    const url = prepareUrl(`user/${json.id}`)
+    return got.put(url, { json }).json() 
+}
+
 exports.createNewPhoto = (json) => {
     const url = prepareUrl('image/upload')
     return got.post(url, { json }).json()
