@@ -12,7 +12,7 @@ model Photo {
   caption          String? @default("") @db.VarChar(1000)
   originalFilename String
   image            String
-  author           User  @relation(fields: [authorId], references: [id])
+  author           User  @relation(fields: [authorId], references: [id], onDelete: Cascade)
   authorId         Int
 }
 
@@ -30,5 +30,5 @@ model ChatMessage {
   message String @db.VarChar(1000)
   date    String
   authorId  Int
-  author   User @relation(fields: [authorId], references: [id])
+  author   User @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }

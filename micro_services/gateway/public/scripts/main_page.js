@@ -36,5 +36,5 @@ document.addEventListener("DOMContentLoaded", async () => {
     await renderGallery()
     setTimeout(() => {
         gallery.scrollTop = gallery.scrollHeight
-    }, 50)
+    }, 200)
 })

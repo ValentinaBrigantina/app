@@ -1,7 +1,7 @@
 const { omit } = require('lodash')
 const { createHash, createJwtTokenAsync, getIdFromToken } = require('../services/auth')
 const { AppError } = require('../utils/app-errors')
-const {  getUserByName, createNewUser, getUserById, updateUserData } = require('../services/data_client')
+const {  getUserByName, createNewUser, getUserById, updateUserData, deleteUser } = require('../services/data_client')
 const { uploadFileToSys, parseFileToProfile } = require('../services/upload')
 const pathToUpload = '/public/images/users'
 
@@ -73,5 +73,11 @@ exports.updateUserById = async (req, res) => {
     const dataUser = await parseFileToProfile(formUpload, req)
     dataUser.id = req.params.userId
     const result = await updateUserData(dataUser)
+    res.send(result)
+}
+
+exports.deleteUserById = async (req, res) => {
+    const userId = req.params.userId
+    const result = await deleteUser(userId)
     res.send(result)
 }

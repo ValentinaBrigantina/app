@@ -47,4 +47,6 @@ app.use((err, req, res, next) => {
       })
 })
 
-httpServer.listen(port)
+httpServer.listen(port, () => {
+  console.log(`Gateway started on http://127.0.0.1:${port}`)
+})
