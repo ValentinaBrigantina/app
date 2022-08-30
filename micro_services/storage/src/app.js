@@ -1,7 +1,6 @@
 const express = require('express')
 const app = express()
 
-// const errorHandler = require('./middleware/global-error-handler')
 const router = require('./router')
 
 const port = parseInt(process.env.PORT) || 4000
@@ -20,5 +19,5 @@ app.use((err, req, res, next) => {
 app.use(router)
 
 app.listen(port, () => {
-    console.log(`We are listening internal http://127.0.0.1:${port}`)
+    console.log(`Storage started on http://127.0.0.1:${port}`)
 })

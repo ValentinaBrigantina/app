@@ -7,23 +7,28 @@ exports.createNewUser = (json) => {
     return got.post(url, { json }).json()
 }
 
-exports.getUserByName = (name) => {
+exports.getUserByName = async (name) => {
     const url = prepareUrl('user/login')
-    return got.post(url, { json: { name } })
+    const data = await got.post(url, { json: { name } })
         .json()
-        .then(data => data ? data : null)
+    return data ? data : null
 }
 
-exports.getUserById = (id) => {
+exports.getUserById = async (id) => {
     const url = prepareUrl('user/name')
-    return got.post(url, { json: { id } })
+    const data = await got.post(url, { json: { id } })
         .json()
-        .then(data => data ? data : null)
+    return data ? data : null
 }
 
 exports.updateUserData = (json) => {
     const url = prepareUrl(`user/${json.id}`)
     return got.put(url, { json }).json() 
+}
+
+exports.deleteUser = (id) => {
+    const url = prepareUrl(`user/${id}`)
+    return got.delete(url, { json: { id } }).json()
 }
 
 exports.createNewPhoto = (json) => {

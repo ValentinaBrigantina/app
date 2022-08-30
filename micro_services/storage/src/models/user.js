@@ -44,3 +44,11 @@ exports.updateUserData = async (req, res) => {
     })
     res.send(user)
 }
+
+exports.deleteUserData = async (req, res) => {
+    const { id } = req.body
+    const user = await dbClient.user.delete({
+        where: { id: parseInt(id) }
+    })
+    res.send(user)
+}

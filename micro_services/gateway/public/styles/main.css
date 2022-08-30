@@ -208,7 +208,30 @@ h1.newsMessage {
     align-items: center;
 }
 
-.alert {
+.alert, #delete_profile {
     background-color: #a496a5;
-    color: #352e35;
+}
+
+.form_delete {
+    margin-top: -60px;
+}
+
+#delete_profile:hover {
+    background-color: #b6a7b7;
+
+}
+
+#deletion_confirmation {
+    margin: 35px;
+}
+
+.input_button {
+    margin-top: 20px;
+    margin-left: 40px;
+}
+
+.flexBtn {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 25px;
 }

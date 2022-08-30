@@ -21,6 +21,7 @@ router.post('/password', asyncErrorHandler(userController.passwordVerification))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
 router.post('/image/upload', asyncErrorHandler(galleryController.uploadPhoto))
 router.put('/user/:userId', asyncErrorHandler(userController.updateUserById))
+router.delete('/user/:userId', asyncErrorHandler(userController.deleteUserById))
 
 
 router.get('*', (req, res) => {
