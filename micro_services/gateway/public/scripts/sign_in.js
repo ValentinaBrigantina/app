@@ -1,5 +1,5 @@
-const createAlert = (message, href) => {
-    return `
+const createAlert = (message, href) => (
+    `
         <div class="newsMessage">
             <h1 class="newsMessage">
                 ${message}
@@ -9,7 +9,7 @@ const createAlert = (message, href) => {
             </button>
         </div>
     `
-}
+)
 
 const submit_login = document.getElementById('submit_login')
 const name_user = document.getElementById('name_user2')
