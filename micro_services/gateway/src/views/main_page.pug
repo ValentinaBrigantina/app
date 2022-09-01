@@ -1,6 +1,14 @@
 extends layout.pug
 
 block content
+    .preloader-wrapper.big.active.preloader
+        .spinner-layer
+            .circle-clipper.left
+                .circle
+            .gap-patch
+                .circle
+            .circle-clipper.right
+                .circle
     .col.s12.m7.gallery
 
     script(src='/scripts/main_page.js')
