@@ -31,8 +31,9 @@ const message = (
     `
 )
 
-
-const gallery = document.querySelector('.gallery');
+const gallery = document.querySelector('.gallery')
+gallery.hidden = true
+const preloader = document.querySelector('.preloader-wrapper')
 const renderGallery = async () => {
     const response = await fetch(`${constants.url}/gallery`)
     const images = await (response.ok ? response.json() : [])
@@ -57,11 +58,12 @@ const renderGallery = async () => {
             resolve({ loaded: false, photo })
         }, 500)
     }))
-    const loadResult = await Promise.all(promises)
-    
-    gallery.scrollTop = gallery.scrollHeight
+    const loadResult = await Promise.all(promises) 
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-    renderGallery()
+document.addEventListener("DOMContentLoaded", async () => {
+    await renderGallery()
+    preloader.remove()
+    gallery.hidden = false
+    gallery.scrollTop = gallery.scrollHeight
 })
