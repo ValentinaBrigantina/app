@@ -32,7 +32,6 @@ const message = (
 )
 
 const gallery = document.querySelector('.gallery')
-gallery.hidden = true
 const preloader = document.querySelector('.preloader-wrapper')
 const renderGallery = async () => {
     const response = await fetch(`${constants.url}/gallery`)
@@ -64,6 +63,6 @@ const renderGallery = async () => {
 document.addEventListener("DOMContentLoaded", async () => {
     await renderGallery()
     preloader.remove()
-    gallery.hidden = false
+    gallery.classList.add('opacity-block')
     gallery.scrollTop = gallery.scrollHeight
 })
