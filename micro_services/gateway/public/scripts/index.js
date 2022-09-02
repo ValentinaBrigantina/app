@@ -36,6 +36,9 @@ const btnSignInMobile = document.querySelector('.btnSignInMobile')
 const btnMyProfileMobile = document.querySelector('.btnMyProfileMobile')
 const signOut = document.querySelector('.signOut')
 const signOutMobile = document.querySelector('.signOutMobile')
+const navigation = document.querySelector('.navigation')
+
+navigation.hidden = true
 
 signOut.addEventListener('click', () => {
     localStorage.removeItem('token')
@@ -47,7 +50,7 @@ signOut.addEventListener('click', () => {
     console.log('remove token mobile', localStorage.token);
  })
 
-async function renderingNav() {
+const renderingNav = async () => {
     const dataUser = await checkToken()
 
     if (localStorage.token) {
@@ -62,6 +65,7 @@ async function renderingNav() {
         btnChat.remove()
         btnMyProfile.remove()
     }
+    navigation.hidden = false
 }
 
 const renderingNavMobile = async () => {
