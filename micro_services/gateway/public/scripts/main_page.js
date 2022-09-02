@@ -1,4 +1,4 @@
-const createPhotoCard = (path, caption, name, avatar) => (
+const createPhotoCard = (path, caption, name, avatar, id) => (
     `
         <div class="card">
             <div class="name_message card-action">
@@ -8,7 +8,10 @@ const createPhotoCard = (path, caption, name, avatar) => (
                  ${name}
             </div>
             <div class="card-image photo">
-                <a href="#"><img class="photo_from_gallery" src="${path}"></a>
+                <a href="#${id}"><img class="photo_from_gallery" src="${path}"></a>
+                <a href="#" class="hiddenPhoto" id="${id}">
+                    <span style="background-image: url('${path}')"></span>
+                </a>
             </div>
             <div class="card-content">
                 <p>${caption}</p>
@@ -31,6 +34,15 @@ const message = (
     `
 )
 
+const makeId = () => {
+    let text = "";
+    let possible = "abcdefghijklmnopqrstuvwxyz";
+    for(let i = 0; i < 5; i++) {
+        text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+    return text;
+}
+
 const gallery = document.querySelector('.gallery')
 const preloader = document.querySelector('.preloader-wrapper')
 const renderGallery = async () => {
@@ -46,7 +58,9 @@ const renderGallery = async () => {
         if (image.avatar === "") {
             image.avatar = "images/service/ext.png" 
         }
-        const slide = createPhotoCard(image.image, image.caption, image.name, image.avatar)
+
+        const id = makeId()
+        const slide = createPhotoCard(image.image, image.caption, image.name, image.avatar, id)
         gallery.insertAdjacentHTML('beforeend', slide)
         const photos = document.querySelectorAll('.photo_from_gallery')
         const photo = photos[count++]
