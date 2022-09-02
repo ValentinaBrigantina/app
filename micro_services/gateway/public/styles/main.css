@@ -194,6 +194,12 @@ h1.newsMessage {
 .gallery {
     height: 685px;
     overflow-y: auto;
+    opacity: 0;
+}
+
+.opacity-block {
+    opacity: 1;
+    transition: 0.5s;
 }
 
 .card {
