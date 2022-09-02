@@ -15,7 +15,7 @@ html
                 li
                     a(href='setting_profile') Setting
                 li
-                    a#signOut(href='sign_out') Log out
+                    a#red.signOut(href='sign_out') Log out
             nav.teal.lighten-2
                 .nav-wrapper
                     a.brand-logo(href='/') Gallery
@@ -34,17 +34,17 @@ html
                             a.dropdown-trigger(href='#' data-target='dropdown1') My profile
                                 i.material-icons.right arrow_drop_down
             ul#mobile-demo.sidenav
-                li#btnAddImage
+                li#btnAddImage.btnAddImageMobile
                     a(href='upload_image') Add photo
-                li#btnChat
+                li#btnChat.btnChatMobile
                     a(href='chat') Chat
-                li#btnSignUp
+                li#btnSignUp.btnSignUpMobile
                     a(href='sign_up') Sign up
-                li#btnSignIn
+                li#btnSignIn.btnSignInMobile
                     a(href='sign_in') Sign in
-                li#btnMyProfile
-                    a.dropdown-trigger(href='#' data-target='dropdown1') My profile
-                        i.material-icons.right arrow_drop_down
+                li#btnMyProfile.btnMyProfileMobile
+                    a(href='setting_profile') Setting profile
+                    a#red.signOutMobile(href='sign_out') Log out
         main.container.colum 
             .main
                 block content
