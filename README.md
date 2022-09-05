@@ -1,8 +1,8 @@
 # My app
 Application for sharing photos and for communication in a general chat.
 
-![screenshot_gallery](https://s1.hostingkartinok.com/uploads/images/2022/09/c24f67959e98c4ede745b831844efe85.jpg)
-![screenshot_chat](https://s1.hostingkartinok.com/uploads/images/2022/09/fe647594632d02bf9cb3a6688b5d3c44.jpg)
+![screenshot_gallery](https://s1.hostingkartinok.com/uploads/images/2022/09/f699dbb46a9ccc92fc9bffaf9ce7f099.jpg)
+![screenshot_chat](https://s1.hostingkartinok.com/uploads/images/2022/09/ff133c37b6662643145c11a94c889290.jpg)
 
 # Requirements
 - node.js v16+
