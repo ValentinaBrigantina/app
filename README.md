@@ -2,7 +2,7 @@
 Application for sharing photos and for communication in a general chat.
 
 ![screenshot_gallery](https://s1.hostingkartinok.com/uploads/images/2022/09/50aa80af91a657f8760c1bf7be898970.png)
-![screenshot_chat](https://s1.hostingkartinok.com/uploads/images/2022/09/21cfad6e873b10b16288f3cad6024404.png)
+![screenshot_chat](https://s1.hostingkartinok.com/uploads/images/2022/09/86842e73b5ec727d888ab6dcb0794c88.png)
 
 # Requirements
 - node.js v16+
