@@ -20,6 +20,9 @@ Application for sharing photos and for communication in a general chat.
 To install project on your local machine just run
 
 ```bash
+git clone git@github.com:ValentinaBrigantina/app.git
+touch micro_services/gateway/.env | cp micro_services/gateway/.env.local micro_services/gateway/.env
+touch micro_services/storage/.env | cp micro_services/storage/.env.local micro_services/storage/.env
 docker compose up --build
 ```
 Runs the app in the development mode.
