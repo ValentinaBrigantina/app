@@ -1,8 +1,10 @@
 # My app
 Application for sharing photos and for communication in a general chat.
 
-<img src="https://s1.hostingkartinok.com/uploads/images/2022/09/5354d05c1d5e7abdde2f8caeb8ededa5.png" width="400" height="300">
-<img src="https://s1.hostingkartinok.com/uploads/images/2022/09/ebd3e4480b0720829b7753682158e8e3.png" width="400" height="300">
+<div style="display: flex; flex-direction: row; justify-content: space-between;">
+    <img src="https://s1.hostingkartinok.com/uploads/images/2022/09/5354d05c1d5e7abdde2f8caeb8ededa5.png" width="400" height="290">
+    <img src="https://s1.hostingkartinok.com/uploads/images/2022/09/ebd3e4480b0720829b7753682158e8e3.png" width="400" height="250">
+</div>
 <!-- ![screenshot_gallery](https://s1.hostingkartinok.com/uploads/images/2022/09/5354d05c1d5e7abdde2f8caeb8ededa5.png)
 ![screenshot_chat](https://s1.hostingkartinok.com/uploads/images/2022/09/ebd3e4480b0720829b7753682158e8e3.png) -->
 
