@@ -19,6 +19,10 @@ h5 {
     padding-left: 10px;
 }
 
+.brand-logo {
+    margin-left: 10px;
+}
+
 .form {
     display: block;
     width: 550px;
@@ -61,7 +65,7 @@ input[type="submit"] {
 }
 
 #messages {
-    height: 400px;
+    height: 54vh;
     overflow-y: auto;
 }
 
@@ -98,6 +102,7 @@ input[type="submit"] {
     background: #fff; 
     margin:2px auto;
     padding: 10px;
+    margin-bottom: 10px;
     position: relative;
     border-radius: 20px; 
     height:14px;
@@ -192,7 +197,7 @@ h1.newsMessage {
 }
 
 .gallery {
-    height: 685px;
+    height: 78vh;
     overflow-y: auto;
     opacity: 0;
 }
@@ -278,4 +283,18 @@ h1.newsMessage {
     bottom: 0;
     right: 0;
     left: 0;
+}
+
+.page-footer {
+    padding: 0;
+}
+
+.flex-bottom {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+}
+
+.text-right {
+    text-align: right;
 }

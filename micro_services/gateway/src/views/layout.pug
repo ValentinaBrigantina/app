@@ -50,11 +50,13 @@ html
                 block content
         footer.page-footer.teal.lighten-3
                 .container
-                    .row
+                    .row.flex-bottom
                         .col.l6.s12
-                            h5.white-text Here can be your advertising.
+                            h5.white-text(style='padding-left: 0') Here can be your advertising.
                             p.grey-text.text-lighten-4 Thanks for using our app &#9786
-                            p.grey-text.text-lighten-4 &copy; 2022
+                        .col.l6.s12
+                            p
+                            p.grey-text.text-lighten-4.text-right &copy; 2022
 
         block scripts 
             script(type='text/javascript', src='/scripts/materialize.js')
