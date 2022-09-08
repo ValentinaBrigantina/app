@@ -1,6 +1,9 @@
 const createPhotoCard = (path, caption, name, avatar, id) => (
     `
         <div class="card">
+            <div class="clear">
+                <a class="small grey-text text-darken-1 material-icons">clear</a>
+            </div>
             <div class="name_message card-action">
                 <div class="avatar">
                     <img class="responsive-img" src="${avatar}" alt="${name}">
@@ -43,6 +46,19 @@ const makeId = () => {
     return text;
 }
 
+const hideButtonX = (count) => {
+    const xes = document.querySelectorAll('.clear')
+    const x = xes[count]
+    x.hidden = true
+    console.log('x', x);
+    const cards = document.querySelectorAll('.card')
+    const card = cards[count]
+    console.log('card', card);
+    card.addEventListener('mouseenter', () => {
+         x.hidden = false
+    })
+}
+
 const gallery = document.querySelector('.gallery')
 const preloader = document.querySelector('.preloader-wrapper')
 const renderGallery = async () => {
@@ -62,6 +78,7 @@ const renderGallery = async () => {
         const id = makeId()
         const slide = createPhotoCard(image.image, image.caption, image.name, image.avatar, id)
         gallery.insertAdjacentHTML('beforeend', slide)
+        hideButtonX(count)
         const photos = document.querySelectorAll('.photo_from_gallery')
         const photo = photos[count++]
         photo.onload = () => {

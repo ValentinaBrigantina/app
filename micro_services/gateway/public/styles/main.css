@@ -298,3 +298,9 @@ h1.newsMessage {
 .text-right {
     text-align: right;
 }
+
+.clear {
+    position: absolute;
+    top: 5px;
+    right: -26px;
+}
