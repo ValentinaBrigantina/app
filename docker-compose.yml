@@ -25,6 +25,8 @@ services:
       dockerfile: dev.Dockerfile
     depends_on:
       - db
+    volumes:
+      - ./micro_services/storage/src:/app/src
     ports:
       - 5555:5555
     environment:
@@ -38,6 +40,8 @@ services:
     volumes:
       - images_users:/app/public/images/users
       - images_gallery:/app/public/images/gallery
+      - ./micro_services/gateway/src:/app/src
+      - ./micro_services/gateway/public:/app/public
     depends_on:
       - storage
     environment:
