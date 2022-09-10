@@ -50,13 +50,14 @@ const hideButtonX = (count) => {
     const xes = document.querySelectorAll('.clear')
     const x = xes[count]
     x.hidden = true
-    console.log('x', x);
     const cards = document.querySelectorAll('.card')
     const card = cards[count]
-    console.log('card', card);
-    card.addEventListener('mouseenter', () => {
+    card.addEventListener('mouseover', () => {
          x.hidden = false
     })
+    card.addEventListener('mouseout', () => {
+        x.hidden = true
+   })
 }
 
 const gallery = document.querySelector('.gallery')
