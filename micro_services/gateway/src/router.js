@@ -20,8 +20,10 @@ router.post('/token', asyncErrorHandler(userController.userVerification))
 router.post('/password', asyncErrorHandler(userController.passwordVerification))
 router.post('/user/login', asyncErrorHandler(userController.authenticateUser))
 router.post('/image/upload', asyncErrorHandler(galleryController.uploadPhoto))
+router.post('/image', galleryController.givePhoto)
 router.put('/user/:userId', asyncErrorHandler(userController.updateUserById))
 router.delete('/user/:userId', asyncErrorHandler(userController.deleteUserById))
+router.delete('/image/:imageId', asyncErrorHandler(galleryController.deletePhoto))
 
 
 router.get('*', (req, res) => {

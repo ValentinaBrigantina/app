@@ -41,6 +41,12 @@ exports.getImagesList = () => {
     return got.get(url).json()
 }
 
+exports.getPhotoByPath = async (image) => {
+    const url = prepareUrl('image')
+    const data = await got.post(url, { json: { image } }).json()
+    return data ? data : null
+}
+
 exports.createNewMessage = (json) => {
     const url = prepareUrl('chat')
     return got.post(url, { json }).json()
@@ -49,4 +55,9 @@ exports.createNewMessage = (json) => {
 exports.getMessagesList = () => {
     const url = prepareUrl('chat/list')
     return got.get(url).json()
+}
+
+exports.deleteImage = (id) => {
+    const url = prepareUrl(`image/${id}`)
+    return got.delete(url, { json: { id }}).json()
 }

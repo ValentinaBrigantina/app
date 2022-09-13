@@ -17,6 +17,8 @@ router.post('/user/name', userModel.getUserById)
 router.put('/user/:userId', userModel.updateUserData)
 router.delete('/user/:userId', userModel.deleteUserData)
 router.post('/image/upload', validationMiddleware(photoSchema.createNewPhoto), galleryModel.createNewPhoto)
+router.post('/image', galleryModel.getPhotoByPath)
+router.delete('/image/:imageId', galleryModel.deleteImage)
 router.post('/chat', validationMiddleware(chatSchema.createNewMessage), chatModel.createNewMessage)
 router.get('/chat/list', chatModel.getList)
 

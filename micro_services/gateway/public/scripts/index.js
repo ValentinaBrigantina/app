@@ -42,12 +42,10 @@ navigation.hidden = true
 
 signOut.addEventListener('click', () => {
     localStorage.removeItem('token')
-    console.log('remove token', localStorage.token);
  })
 
  signOutMobile.addEventListener('click', () => {
     localStorage.removeItem('token')
-    console.log('remove token mobile', localStorage.token);
  })
 
 const renderingNav = async () => {

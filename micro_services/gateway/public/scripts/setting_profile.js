@@ -79,19 +79,15 @@ const isPassword = async (password, id) => {
     const result = await response.json()
     if (!result) {
         M.toast({html: 'Invalid password!', classes: 'alert'})
-        return false
-    } else {
-        return true
     }
+    return result
 }
 
 const checkPassword = () => {
     if (!password.value) {
         M.toast({html: 'Enter your password!', classes: 'alert'})
-        return false
-    } else {
-        return true
     }
+    return password.value
 }
 
 const forms = document.querySelectorAll('.form')

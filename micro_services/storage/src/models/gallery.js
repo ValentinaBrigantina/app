@@ -21,3 +21,25 @@ exports.getList = async (req, res) => {
     const images = await dbClient.photo.findMany()
     res.send(images)
 }
+
+exports.getPhotoByPath = async (req, res) => {
+    const { image } = req.body
+    const currentImage = await dbClient.photo.findUnique({
+        where: { image: image },
+        select: {
+            id: true,
+            caption: true,
+            originalFilename: true,
+            authorId: true,
+        },
+    })
+    res.send(currentImage)
+}
+
+exports.deleteImage = async (req, res) => {
+    const { id } = req.body
+    const photo = await dbClient.photo.delete({
+        where: { id: parseInt(id) }
+    })
+    res.send(photo)
+}

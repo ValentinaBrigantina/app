@@ -2,7 +2,7 @@ const createPhotoCard = (path, caption, name, avatar, id) => (
     `
         <div class="card">
             <div class="clear">
-                <a class="small grey-text text-darken-1 material-icons">clear</a>
+                <a onclick="deletePhoto('${path}')" class="small grey-text text-darken-1 material-icons" href="#">clear</a>
             </div>
             <div class="name_message card-action">
                 <div class="avatar">
@@ -60,6 +60,31 @@ const hideButtonX = (count) => {
    })
 }
 
+const givePhoto = async (image) => {
+    const response = await fetch(`${constants.url}/image`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+        body: JSON.stringify({ image: image })
+    })
+    const data = await response.json()
+    return data
+}
+
+const deletePhoto = async (image) => {
+    const photo = await givePhoto(image)
+    const response = await fetch(`${constants.url}/image/${photo.id}`, {
+        method: 'DELETE',
+        headers: {
+            'Content-Type': 'application/json;charset=utf-8'
+        },
+    })
+    if (response.ok) {
+       await renderMainPage()
+    }
+}
+
 const gallery = document.querySelector('.gallery')
 const preloader = document.querySelector('.preloader-wrapper')
 const renderGallery = async () => {
@@ -92,9 +117,11 @@ const renderGallery = async () => {
     const loadResult = await Promise.all(promises) 
 }
 
-document.addEventListener("DOMContentLoaded", async () => {
+const renderMainPage = async () => {
     await renderGallery()
     preloader.remove()
     gallery.classList.add('opacity-block')
     gallery.scrollTop = gallery.scrollHeight
-})
+}
+
+document.addEventListener("DOMContentLoaded", renderMainPage)
