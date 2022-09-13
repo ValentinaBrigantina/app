@@ -2,7 +2,7 @@ const createPhotoCard = (path, caption, name, avatar, id) => (
     `
         <div class="card">
             <div class="clear">
-                <a onclick="deletePhoto('${path}')" class="small grey-text text-darken-1 material-icons" href="#">clear</a>
+                <a onclick="deletePhoto('${path}', ${id})" class="small grey-text text-darken-1 material-icons" href="#">clear</a>
             </div>
             <div class="name_message card-action">
                 <div class="avatar">
@@ -72,7 +72,7 @@ const givePhoto = async (image) => {
     return data
 }
 
-const deletePhoto = async (image) => {
+const deletePhoto = async (image, idElement) => {
     const photo = await givePhoto(image)
     const response = await fetch(`${constants.url}/image/${photo.id}`, {
         method: 'DELETE',
@@ -81,16 +81,21 @@ const deletePhoto = async (image) => {
         },
     })
     if (response.ok) {
-       await renderMainPage()
+        const currentCard = idElement.parentElement.parentElement
+        currentCard.remove()
+
+        if (document.querySelectorAll('.card').length === 0) {
+            gallery.insertAdjacentHTML('beforeend', message)
+        }
     }
 }
 
 const gallery = document.querySelector('.gallery')
 const preloader = document.querySelector('.preloader-wrapper')
+
 const renderGallery = async () => {
     const response = await fetch(`${constants.url}/gallery`)
     const images = await (response.ok ? response.json() : [])
-
     if (images.length === 0) {
         gallery.insertAdjacentHTML('beforeend', message)
     }
