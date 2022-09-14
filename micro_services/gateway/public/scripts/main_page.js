@@ -46,17 +46,17 @@ const makeId = () => {
     return text;
 }
 
-const hideButtonX = (count) => {
-    const xes = document.querySelectorAll('.clear')
-    const x = xes[count]
-    x.hidden = true
+const hideButtonClear = (count) => {
+    const buttonsClear = document.querySelectorAll('.clear')
+    const buttonClear = buttonsClear[count]
+    buttonClear.hidden = true
     const cards = document.querySelectorAll('.card')
     const card = cards[count]
     card.addEventListener('mouseover', () => {
-         x.hidden = false
+        buttonClear.hidden = false
     })
     card.addEventListener('mouseout', () => {
-        x.hidden = true
+        buttonClear.hidden = true
    })
 }
 
@@ -109,7 +109,7 @@ const renderGallery = async () => {
         const id = makeId()
         const slide = createPhotoCard(image.image, image.caption, image.name, image.avatar, id)
         gallery.insertAdjacentHTML('beforeend', slide)
-        hideButtonX(count)
+        hideButtonClear(count)
         const photos = document.querySelectorAll('.photo_from_gallery')
         const photo = photos[count++]
         photo.onload = () => {
